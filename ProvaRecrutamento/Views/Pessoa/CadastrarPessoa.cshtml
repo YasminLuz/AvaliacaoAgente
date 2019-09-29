@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ProvaRecrutamento.Models.PessoaViewModel>
+
+@{ 
+    ViewBag.Title = "Cadastro";
+}
+
+<div id="cadastro">
+    <section id="cadastro_cabecalho">
+        <h1>@ViewBag.Title</h1>
+    </section>
+
+    <section id="cadastro_conteudo">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div id="cabecalho_grid" class="row">
+                        <a id="btn_cadastrar" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus"></i>Cadastrar</a>
+                    </div>
+
+                    <div class="row">
+                        <table id="grid_cadastro" class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Sexo</th>
+                                    <th>Cargo</th>
+                                    <th>Estado Civil</th>
+                                    <th>Endereço</th>
+                                    <th>Data de nascimento</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @if (Model == null)
+                                {
+                                    <span>Lista vazia</span>
+                                }else
+                                {
+                                    @foreach (var i in Model)
+                                    {
+                                    <tr>
+                                        <td>@i.pessoaId </td>
+                                        <td>@i.nome </td>
+                                        <td>@i.cpf </td>
+                                        <td>@i.sexo </td>
+                                        <td>@i.cargoId </td>
+                                        Type propertyType = @i.estadoId.GetType();
+                                        PropertyInfo propertyInfo = propertyType.GetProperty(propertyName);
+                                        String retValue = propertyInfo.GetValue(property, null).ToString();
+                                        <td>@i.estadoId </td>
+                                        <td>@i.endereco. </td>
+                                        <td>@i.dataNasc </td>
+                                        <td>
+                                            <a class="btn btn-primary btn-editar" role="button"><i class="glyphicon glyphicon-pencil"></i>Editar</a>
+                                            <a class="btn btn-danger btn-excluir" role="button"><i class="glyphicon glyphicon-trash"></i>Excluir</a>
+                                        </td>
+                                    </tr>
+                                    }
+                                }
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
