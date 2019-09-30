@@ -1,119 +1,83 @@
-﻿
+﻿@model ProvaRecrutamento.Models.PessoaViewModel
+
 @{
-    ViewBag.Title = "Editar Pessoa";
+    ViewBag.Title = "EditarPessoa";
 }
 
-<div id="modal_cadastro" class="form-horizontal invisivel" role="dialog">
-    <fieldset>
-        <div class="row">
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_Nome", "Nome:", new { @class = "col-md-3 control-label" })
-                    @Html.TextBox("txt_nome", null, new { @class = "form-control" })
-                </div>
-            </div>
+<h2>EditarPessoa</h2>
 
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_cpf", "CPF:", new { @class = "col-md-3 control-label" })
-                    @Html.TextBox("txt_cpf", null, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_data", "Data de nascimento:", new { @class = "col-md-3 control-label" })
-                    @{ Html.Html5DateRenderingMode = Html5DateRenderingMode.Rfc3339; }
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_cargo", "Cargo:", new { @class = "col-md-3 control-label" })
-                    @Html.TextBox("txt_cargo", null, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_estado", "Estado:", new { @class = "col-md-3 control-label" })
-                    @Html.TextBox("txt_estado", null, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_sexo", "Sexo:", new { @class = "col-md-3 control-label" })
-                    @Html.DropDownList("Sexo",
-                    new SelectList(Enum.GetValues(typeof(ProvaRecrutamento.Models.Sexo))),
-                    "Selecione o sexo",
-                    new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_endereco", "Endereço:", new { @class = "col-md-3 control-label" })
-                    @Html.TextBox("txt_endereco", null, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_numero", "Número:", new { @class = "col-md-3 control-label" })
-                    @Html.TextBox("txt_numero", null, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_complemento", "Complemento:", new { @class = "col-md-3 control-label" })
-                    @Html.TextBox("txt_complemento", null, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_bairro", "Bairro:", new { @class = "col-md-3 control-label" })
-                    @Html.TextBox("txt_bairro", null, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_cidade", "Cidade:", new { @class = "col-md-3 control-label" })
-                    @Html.TextBox("txt_cidade", null, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_cep", "CEP:", new { @class = "col-md-3 control-label" })
-                    @Html.TextBox("txt_cep", null, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    @Html.Label("txt_estado", "Estado:", new { @class = "col-md-3 control-label" })
-                    @Html.DropDownList("Estado",
-                    new SelectList(Enum.GetValues(typeof(ProvaRecrutamento.Models.Estados))),
-                    "Selecione o estado...",
-                    new { @class = "form-control" })
-                </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>PessoaViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.pessoaId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pessoaId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pessoaId, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <div class="modal-footer">
-                        <a id="btn_sair" class="btn btn-default" role="button" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Sair</a>
-                        <a id="btn_salvar" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-ok"></i>Salvar</a>
-                    </div>
-                </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cargoId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cargoId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cargoId, "", new { @class = "text-danger" })
             </div>
         </div>
-    </fieldset>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cpf, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cpf, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cpf, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sexo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sexo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sexo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dataNasc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dataNasc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dataNasc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.estadoId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.estadoId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.estadoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
-
-

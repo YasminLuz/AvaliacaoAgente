@@ -1,0 +1,80 @@
+﻿@model ProvaRecrutamento.Models.PessoaViewModel
+
+@{
+    ViewBag.Title = "ExcluirPessoa";
+}
+
+<h2>ExcluirPessoa</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PessoaViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pessoaId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pessoaId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cargoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cargoId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sexo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sexo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataNasc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataNasc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estadoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estadoId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

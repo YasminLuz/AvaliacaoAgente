@@ -15,14 +15,20 @@ namespace ProvaRecrutamento.Controllers
             return View(ConnectDAO.AllPessoas());
         }
 
-        public ActionResult ExibirPessoa()
+        public ActionResult CadastrarPessoa1()
         {
             return View();
         }
 
-        public ActionResult EditarPessoa()
+        public ActionResult EditarPessoa(int id)
+        {
+            return Json(ConnectDAO.PessoasById(id));
+        }
+
+        public ActionResult ExcluirPessoa()
         {
             return View();
         }
+   
     }
 }

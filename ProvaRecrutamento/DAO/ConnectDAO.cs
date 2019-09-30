@@ -66,12 +66,9 @@ namespace ProvaRecrutamento.DAO
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = SQLConnection.statusConexao();
-                //command.CommandType = CommandType.Text;
                 command.CommandText = _queryPessoas;
                 SqlDataReader dr = command.ExecuteReader();
 
-                //if (dr.HasRows)
-                //{
                     while (dr.Read())
                     {
                 
@@ -84,12 +81,7 @@ namespace ProvaRecrutamento.DAO
                         e.estado = dr.GetString(dr.GetOrdinal("Estado"));
                         e.cep = dr.GetString(dr.GetOrdinal("CEP"));
 
-                    //list.Add(new PessoaViewModel
-                    //{
-
-                    //});
-
-                    PessoaViewModel p = new PessoaViewModel();
+                        PessoaViewModel p = new PessoaViewModel();
                         p.pessoaId = dr.GetInt32(dr.GetOrdinal("PessoaFisicaID"));
                         p.cargoId = dr.GetInt32(dr.GetOrdinal("CargoID"));
                         p.nome = dr.GetString(dr.GetOrdinal("Nome"));
@@ -101,16 +93,52 @@ namespace ProvaRecrutamento.DAO
                         
                         list.Add(p);
                     }
-                //}
-                //else
-                //{
-                //    Console.WriteLine("Nenhuma informação registrada");
-                //}
+       
                 dr.Close();
             }
 
 
             return list;
+        }
+
+        public static PessoaViewModel PessoasById(int id)
+        {
+            SQLConnection.conectar();
+
+            var p = new PessoaViewModel();
+
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = SQLConnection.statusConexao();
+                command.CommandText = _queryPessoas;
+                SqlDataReader dr = command.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    EnderecoModel e = new EnderecoModel();
+                    e.endereco = dr.GetString(dr.GetOrdinal("Endereco"));
+                    e.numero = dr.GetString(dr.GetOrdinal("Numero"));
+                    e.complemento = dr.GetString(dr.GetOrdinal("Complemento"));
+                    e.bairro = dr.GetString(dr.GetOrdinal("Bairro"));
+                    e.cidade = dr.GetString(dr.GetOrdinal("Cidade"));
+                    e.estado = dr.GetString(dr.GetOrdinal("Estado"));
+                    e.cep = dr.GetString(dr.GetOrdinal("CEP"));
+
+
+                    p.pessoaId = dr.GetInt32(dr.GetOrdinal("PessoaFisicaID"));
+                    p.cargoId = dr.GetInt32(dr.GetOrdinal("CargoID"));
+                    p.nome = dr.GetString(dr.GetOrdinal("Nome"));
+                    p.cpf = dr.GetString(dr.GetOrdinal("CPF"));
+                    p.endereco = e;
+                    p.sexo = dr.GetString(dr.GetOrdinal("Sexo"));
+                    p.dataNasc = dr.GetDateTime(dr.GetOrdinal("DataNascimento"));
+                    p.estadoId = dr.GetByte(dr.GetOrdinal("EstadoCivilID"));
+                }
+        
+                dr.Close();
+            }
+
+            return p;
         }
 
 
