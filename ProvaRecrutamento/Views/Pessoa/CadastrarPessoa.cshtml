@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<ProvaRecrutamento.Models.PessoaViewModel>
+@using AuthoringTagHelpers
 
-@{ 
+@{
     ViewBag.Title = "Pessoas físicas";
 }
 
@@ -35,9 +36,9 @@
                             </thead>
 
                             <tbody>
-                              
-                                    @foreach (var i in Model)
-                                    {
+
+                                @foreach (var i in Model)
+                                {
                                     <tr>
                                         <td>@i.pessoaId </td>
                                         <td>@i.nome </td>
@@ -52,8 +53,8 @@
                                             <a class="btn btn-danger btn-excluir" role="button"><i class="glyphicon glyphicon-trash"></i>Excluir</a>
                                         </td>
                                     </tr>
-                                    }
-                             
+                                }
+
                             </tbody>
                         </table>
                     </div>
@@ -84,6 +85,7 @@
                 <div class="col-md-12">
                     @Html.Label("txt_data", "Data de nascimento:", new { @class = "col-md-3 control-label" })
                     @{ Html.Html5DateRenderingMode = Html5DateRenderingMode.CurrentCulture; }
+                   
                     @*@Html.TextBoxFor(m => m.dataNasc, "{0:dd-MM-yyyy}", new { @class = "form-control", @type = "date" })*@
                 </div>
             </div>
@@ -189,14 +191,14 @@
                     $('txt_nome').focus();
                 });
             }).on('hidden.bs.modal', function () {
-                    modal_cadastro.hide().appendTo('body');
+                modal_cadastro.hide().appendTo('body');
             });
 
         }).on('click', '.btn-editar', function () {
             alert('1');
 
-            }).on('click', '.btn-excluir', function () {
-                alert('1');
+        }).on('click', '.btn-excluir', function () {
+            alert('1');
         })
     </script>
 }
