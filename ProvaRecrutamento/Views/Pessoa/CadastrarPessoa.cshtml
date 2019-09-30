@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ProvaRecrutamento.Models.PessoaViewModel>
 
 @{ 
-    ViewBag.Title = "Cadastro";
+    ViewBag.Title = "Pessoas físicas";
 }
 
 <div id="cadastro">
@@ -19,6 +19,7 @@
 
                     <div class="row">
                         <table id="grid_cadastro" class="table table-bordered table-striped table-hover">
+                            </br>
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -34,11 +35,7 @@
                             </thead>
 
                             <tbody>
-                                @if (Model == null)
-                                {
-                                    <span>Lista vazia</span>
-                                }else
-                                {
+                              
                                     @foreach (var i in Model)
                                     {
                                     <tr>
@@ -47,9 +44,6 @@
                                         <td>@i.cpf </td>
                                         <td>@i.sexo </td>
                                         <td>@i.cargoId </td>
-                                        Type propertyType = @i.estadoId.GetType();
-                                        PropertyInfo propertyInfo = propertyType.GetProperty(propertyName);
-                                        String retValue = propertyInfo.GetValue(property, null).ToString();
                                         <td>@i.estadoId </td>
                                         <td>@i.endereco. </td>
                                         <td>@i.dataNasc </td>
@@ -59,15 +53,151 @@
                                         </td>
                                     </tr>
                                     }
-                                }
-                                </tbody>
+                             
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-
 </div>
+
+<div id="modal_cadastro" class="form-horizontal invisivel" role="dialog">
+    <fieldset>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_Nome", "Nome:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_nome", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_cpf", "CPF:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_cpf", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_data", "Data de nascimento:", new { @class = "col-md-3 control-label" })
+                    @{ Html.Html5DateRenderingMode = Html5DateRenderingMode.CurrentCulture; }
+                    @*@Html.TextBoxFor(m => m.dataNasc, "{0:dd-MM-yyyy}", new { @class = "form-control", @type = "date" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_cargo", "Cargo:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_cargo", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_estado", "Estado:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_estado", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_sexo", "Sexo:", new { @class = "col-md-3 control-label" })
+                    @Html.DropDownList("Sexo",
+                    new SelectList(Enum.GetValues(typeof(ProvaRecrutamento.Models.Sexo))),
+                    "Selecione o sexo",
+                    new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_endereco", "Endereço:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_endereco", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_numero", "Número:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_numero", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_complemento", "Complemento:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_complemento", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_bairro", "Bairro:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_bairro", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_cidade", "Cidade:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_cidade", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_cep", "CEP:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_cep", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_estado", "Estado:", new { @class = "col-md-3 control-label" })
+                    @Html.DropDownList("Estado",
+                    new SelectList(Enum.GetValues(typeof(ProvaRecrutamento.Models.Estados))),
+                    "Selecione o estado...",
+                    new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="modal-footer">
+                        <a id="btn_sair" class="btn btn-default" role="button" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Sair</a>
+                        <a id="btn_salvar" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-ok"></i>Salvar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).on('click', '#btn_cadastrar', function () {
+            var modal_cadastro = $('#modal_cadastro');
+            bootbox.dialog({
+                title: 'Cadastrar pessoas físicas',
+                message: modal_cadastro
+            }).on('shown.bs.modal', function () {
+                modal_cadastro.show(0, function () {
+                    $('txt_nome').focus();
+                });
+            }).on('hidden.bs.modal', function () {
+                    modal_cadastro.hide().appendTo('body');
+            });
+
+        }).on('click', '.btn-editar', function () {
+            alert('1');
+
+            }).on('click', '.btn-excluir', function () {
+                alert('1');
+        })
+    </script>
+}
 

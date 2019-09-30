@@ -14,10 +14,15 @@ namespace ProvaRecrutamento.Models
         public String cpf { get; set; }
         public EnderecoModel endereco { get; set; }
         public String sexo { get; set; }
-        public DateTime dataNasc { get; set; }
-        public int estadoId { get; set; }
-        public List<ProvaRecrutamento.DAO.ConnectDAO> MyList ;
 
-        public PessoaViewModel() { }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public Nullable<System.DateTime> dataNasc { get; set; }
+
+        public int estadoId { get; set; }
+    }
+    public enum Sexo
+    {
+        M, F
     }
 }
