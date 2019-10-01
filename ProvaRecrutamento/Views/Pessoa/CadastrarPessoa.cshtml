@@ -15,7 +15,7 @@
                 <div class="box">
                     <div id="cabecalho_grid" class="row">
                         <a id="btn_cadastrar" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus"></i>Cadastrar</a>
-                       @* @Html.Action("ProvaRecrutamento.Views.CadastrarPessoa1)*@
+                         @*@Html.Action("ProvaRecrutamento.Views.CadastrarPessoa1")*@
                     </div>
 
                     <div class="row">
@@ -65,7 +65,7 @@
 </div>
 
 
-@*<div id="modal_cadastro" class="form-horizontal invisivel" role="dialog">
+<div id="modal_cadastro" class="form-horizontal invisivel" role="dialog">
     <fieldset>
         <div class="row">
             <div class="form-group">
@@ -87,101 +87,101 @@
                     @Html.Label("txt_data", "Data de nascimento:", new { @class = "col-md-3 control-label" })
                     @{ Html.Html5DateRenderingMode = Html5DateRenderingMode.CurrentCulture; }
 
-                    @*@*@*@Html.TextBoxFor(m => m.dataNasc, "{0:dd-MM-yyyy}", new { @class = "form-control", @type = "date" })*@*@*@
-                                        @*</div>
-                                    </div>
+                    @*@Html.TextBoxFor(m => m.dataNasc, "{0:dd-MM-yyyy}", new { @class = "form-control", @type = "date" })*@
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            @Html.Label("txt_cargo", "Cargo:", new { @class = "col-md-3 control-label" })
-                                            @Html.TextBox("txt_cargo", null, new { @class = "form-control" })
-                                        </div>
-                                    </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_cargo", "Cargo:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_cargo", null, new { @class = "form-control" })
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            @Html.Label("txt_estado", "Estado:", new { @class = "col-md-3 control-label" })
-                                            @Html.TextBox("txt_estado", null, new { @class = "form-control" })
-                                        </div>
-                                    </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_estado", "Estado:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_estado", null, new { @class = "form-control" })
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            @Html.Label("txt_sexo", "Sexo:", new { @class = "col-md-3 control-label" })
-                                            @Html.DropDownList("Sexo",
-                                            new SelectList(Enum.GetValues(typeof(ProvaRecrutamento.Models.Sexo))),
-                                            "Selecione o sexo",
-                                            new { @class = "form-control" })
-                                        </div>
-                                    </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_sexo", "Sexo:", new { @class = "col-md-3 control-label" })
+                    @Html.DropDownList("Sexo",
+                    new SelectList(Enum.GetValues(typeof(ProvaRecrutamento.Models.Sexo))),
+                    "Selecione o sexo",
+                    new { @class = "form-control" })
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            @Html.Label("txt_endereco", "Endereço:", new { @class = "col-md-3 control-label" })
-                                            @Html.TextBox("txt_endereco", null, new { @class = "form-control" })
-                                        </div>
-                                    </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_endereco", "Endereço:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_endereco", null, new { @class = "form-control" })
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            @Html.Label("txt_numero", "Número:", new { @class = "col-md-3 control-label" })
-                                            @Html.TextBox("txt_numero", null, new { @class = "form-control" })
-                                        </div>
-                                    </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_numero", "Número:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_numero", null, new { @class = "form-control" })
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            @Html.Label("txt_complemento", "Complemento:", new { @class = "col-md-3 control-label" })
-                                            @Html.TextBox("txt_complemento", null, new { @class = "form-control" })
-                                        </div>
-                                    </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_complemento", "Complemento:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_complemento", null, new { @class = "form-control" })
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            @Html.Label("txt_bairro", "Bairro:", new { @class = "col-md-3 control-label" })
-                                            @Html.TextBox("txt_bairro", null, new { @class = "form-control" })
-                                        </div>
-                                    </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_bairro", "Bairro:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_bairro", null, new { @class = "form-control" })
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            @Html.Label("txt_cidade", "Cidade:", new { @class = "col-md-3 control-label" })
-                                            @Html.TextBox("txt_cidade", null, new { @class = "form-control" })
-                                        </div>
-                                    </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_cidade", "Cidade:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_cidade", null, new { @class = "form-control" })
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            @Html.Label("txt_cep", "CEP:", new { @class = "col-md-3 control-label" })
-                                            @Html.TextBox("txt_cep", null, new { @class = "form-control" })
-                                        </div>
-                                    </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_cep", "CEP:", new { @class = "col-md-3 control-label" })
+                    @Html.TextBox("txt_cep", null, new { @class = "form-control" })
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            @Html.Label("txt_estado", "Estado:", new { @class = "col-md-3 control-label" })
-                                            @Html.DropDownList("Estado",
-                                            new SelectList(Enum.GetValues(typeof(ProvaRecrutamento.Models.Estados))),
-                                            "Selecione o estado...",
-                                            new { @class = "form-control" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="modal-footer">
-                                                <a id="btn_sair" class="btn btn-default" role="button" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Sair</a>
-                                                <a id="btn_salvar" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-ok"></i>Salvar</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>*@
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.Label("txt_estado", "Estado:", new { @class = "col-md-3 control-label" })
+                    @Html.DropDownList("Estado",
+                    new SelectList(Enum.GetValues(typeof(ProvaRecrutamento.Models.Estados))),
+                    "Selecione o estado...",
+                    new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="modal-footer">
+                        <a id="btn_sair" class="btn btn-default" role="button" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Sair</a>
+                        <a id="btn_salvar" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-ok"></i>Salvar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
 
-                    @section Scripts{
-                        <script>
+@section Scripts{
+    <script>
                             function chamar_form(dados) {
                                 $('txt_nome').val(dados.Nome);
 
@@ -213,7 +213,7 @@
                                 }).on('click', '.btn-excluir', function () {
                                     alert('1');
                                 });
-                            
-                        </script>
-                    }
+
+    </script>
+}
 

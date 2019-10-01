@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_RECRUTAMENTOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="CargoId" />
+    </Key>
+    <Property Name="CargoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cargo1" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PessoaFisica" Relationship="Self.FK_PessoaFisica_Cargo" FromRole="Cargo" ToRole="PessoaFisica" />
+  </EntityType>
+  <EntityType Name="EstadoCivil">
+    <Key>
+      <PropertyRef Name="EstadoCivilID" />
+    </Key>
+    <Property Name="EstadoCivilID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EstadoCivil1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PessoaFisica" Relationship="Self.FK_PessoaFisica_EstadoCivil" FromRole="EstadoCivil" ToRole="PessoaFisica" />
+  </EntityType>
+  <EntityType Name="PessoaFisica">
+    <Key>
+      <PropertyRef Name="PessoaFisicaID" />
+    </Key>
+    <Property Name="PessoaFisicaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CPF" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="DataNascimento" Type="DateTime" Precision="0" />
+    <Property Name="EstadoCivilID" Type="Byte" />
+    <Property Name="CargoID" Type="Int32" />
+    <Property Name="Endereco" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Numero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Complemento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="CEP" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cargo" Relationship="Self.FK_PessoaFisica_Cargo" FromRole="PessoaFisica" ToRole="Cargo" />
+    <NavigationProperty Name="EstadoCivil" Relationship="Self.FK_PessoaFisica_EstadoCivil" FromRole="PessoaFisica" ToRole="EstadoCivil" />
+  </EntityType>
+  <Association Name="FK_PessoaFisica_Cargo">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="0..1" />
+    <End Role="PessoaFisica" Type="Self.PessoaFisica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="CargoId" />
+      </Principal>
+      <Dependent Role="PessoaFisica">
+        <PropertyRef Name="CargoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PessoaFisica_EstadoCivil">
+    <End Role="EstadoCivil" Type="Self.EstadoCivil" Multiplicity="0..1" />
+    <End Role="PessoaFisica" Type="Self.PessoaFisica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoCivil">
+        <PropertyRef Name="EstadoCivilID" />
+      </Principal>
+      <Dependent Role="PessoaFisica">
+        <PropertyRef Name="EstadoCivilID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_RECRUTAMENTOEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cargo" EntityType="Self.Cargo" />
+    <EntitySet Name="EstadoCivil" EntityType="Self.EstadoCivil" />
+    <EntitySet Name="PessoaFisica" EntityType="Self.PessoaFisica" />
+    <AssociationSet Name="FK_PessoaFisica_Cargo" Association="Self.FK_PessoaFisica_Cargo">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="PessoaFisica" EntitySet="PessoaFisica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PessoaFisica_EstadoCivil" Association="Self.FK_PessoaFisica_EstadoCivil">
+      <End Role="EstadoCivil" EntitySet="EstadoCivil" />
+      <End Role="PessoaFisica" EntitySet="PessoaFisica" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

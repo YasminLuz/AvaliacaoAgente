@@ -85,3 +85,7 @@ C:\Users\Yasmin\source\repos\ProvaPrática-RecrutamentoDesenvolvedor\ProvaRecrut
 C:\Users\Yasmin\source\repos\ProvaPrática-RecrutamentoDesenvolvedor\ProvaRecrutamento\obj\Debug\ProvaRecrutamento.csproj.CopyComplete
 C:\Users\Yasmin\source\repos\ProvaPrática-RecrutamentoDesenvolvedor\ProvaRecrutamento\obj\Debug\ProvaRecrutamento.dll
 C:\Users\Yasmin\source\repos\ProvaPrática-RecrutamentoDesenvolvedor\ProvaRecrutamento\obj\Debug\ProvaRecrutamento.pdb
+C:\Users\Yasmin\source\repos\ProvaPrática-RecrutamentoDesenvolvedor\ProvaRecrutamento\bin\EntityFramework.dll
+C:\Users\Yasmin\source\repos\ProvaPrática-RecrutamentoDesenvolvedor\ProvaRecrutamento\bin\EntityFramework.SqlServer.dll
+C:\Users\Yasmin\source\repos\ProvaPrática-RecrutamentoDesenvolvedor\ProvaRecrutamento\bin\EntityFramework.xml
+C:\Users\Yasmin\source\repos\ProvaPrática-RecrutamentoDesenvolvedor\ProvaRecrutamento\bin\EntityFramework.SqlServer.xml
