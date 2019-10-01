@@ -15,9 +15,9 @@ namespace ProvaRecrutamento.DAO
         private String _createPessoa = "INSERT INTO PessoaFisica (PessoaFisicaID, Nome, CPF, Sexo,DataNascimento, EstadoCivilID, CargoID, Endereco, Numero, Complemento, Bairro, Cidade, Estado, CEP)" +
                                       " VALUES (@id, @nome, @cpf, @sexo, @nascimento, @e_civilId, @cargoId, @endereco, @numero, @complemento, @bairro, @cidade, @estado, @cep)";
         private static String _queryPessoas = "SELECT * FROM PessoaFisica ORDER BY Nome ASC";
-        private String _queryPessoa = "SELECT * FROM PessoaFisica WHERE PessoaFisicaID = @id";
+        private static String _queryPessoa = "SELECT * FROM PessoaFisica WHERE PessoaFisicaID = @id";
         private String _updatePessoa = "UPDATE PessoaFisica SET Nome = @nome, CPF = @cpf, Sexo = @sexo, DataNascimento = @nascimento, EstadoCivilID = @e_civilId, CargoID = @cargoId, Endereco = @endereco, Numero = @numero, Complemento = @complemento, Bairro = @bairro, Cidade = @cidade, Estado = @estado, CEP = @cep) WHERE PessoaFisicaID = @id";
-        private String _deletePessoa = "DELETE FROM PessoaFisica WHERE PessoaFisicaID = @id";
+        private static String _deletePessoa = "DELETE FROM PessoaFisica WHERE PessoaFisicaID = @id";
 
         public void create(PessoaViewModel pessoa)
         {
@@ -114,8 +114,8 @@ namespace ProvaRecrutamento.DAO
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = SQLConnection.statusConexao();
-                command.CommandText = _queryPessoas;
-                SqlDataReader dr = command.ExecuteReader();
+                command.CommandText = _queryPessoa;
+                var dr = command.ExecuteReader();
 
                 while (dr.Read())
                 {
@@ -187,7 +187,7 @@ namespace ProvaRecrutamento.DAO
         }
 
         [HttpPost]
-        public void ExcluirPessoa(int id)
+        public static void ExcluirPessoa(int id)
         {
 
             SQLConnection.conectar();
