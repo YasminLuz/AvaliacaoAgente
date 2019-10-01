@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.Data;
+using System.Web.Mvc;
 
 namespace ProvaRecrutamento.DAO
 {
@@ -41,6 +42,7 @@ namespace ProvaRecrutamento.DAO
                 command.Parameters.AddWithValue("@cidade", pessoa.endereco.cidade);
                 command.Parameters.AddWithValue("@estado", pessoa.endereco.estado);
                 command.Parameters.AddWithValue("@cep", pessoa.endereco.cep);
+                command.ExecuteNonQuery();
 
                 SQLConnection.desconectar();
 
@@ -48,7 +50,7 @@ namespace ProvaRecrutamento.DAO
                 {
                     SQLConnection.conectar();
                     command.ExecuteNonQuery();
-                    
+
                 }
                 catch (SqlException ex)
                 {
@@ -70,31 +72,31 @@ namespace ProvaRecrutamento.DAO
                 command.CommandText = _queryPessoas;
                 SqlDataReader dr = command.ExecuteReader();
 
-                    while (dr.Read())
-                    {
-                
-                        EnderecoModel e = new EnderecoModel();
-                        e.endereco = dr.GetString(dr.GetOrdinal("Endereco"));
-                        e.numero = dr.GetString(dr.GetOrdinal("Numero"));
-                        e.complemento = dr.GetString(dr.GetOrdinal("Complemento"));
-                        e.bairro = dr.GetString(dr.GetOrdinal("Bairro"));
-                        e.cidade = dr.GetString(dr.GetOrdinal("Cidade"));
-                        e.estado = dr.GetString(dr.GetOrdinal("Estado"));
-                        e.cep = dr.GetString(dr.GetOrdinal("CEP"));
+                while (dr.Read())
+                {
 
-                        PessoaViewModel p = new PessoaViewModel();
-                        p.pessoaId = dr.GetInt32(dr.GetOrdinal("PessoaFisicaID"));
-                        p.cargoId = dr.GetInt32(dr.GetOrdinal("CargoID"));
-                        p.nome = dr.GetString(dr.GetOrdinal("Nome"));
-                        p.cpf = dr.GetString(dr.GetOrdinal("CPF"));
-                        p.endereco = e;
-                        p.sexo = dr.GetString(dr.GetOrdinal("Sexo"));
-                        p.dataNasc = dr.GetDateTime(dr.GetOrdinal("DataNascimento"));
-                        p.estadoId = dr.GetByte(dr.GetOrdinal("EstadoCivilID"));
-                        
-                        list.Add(p);
-                    }
-       
+                    EnderecoModel e = new EnderecoModel();
+                    e.endereco = dr.GetString(dr.GetOrdinal("Endereco"));
+                    e.numero = dr.GetString(dr.GetOrdinal("Numero"));
+                    e.complemento = dr.GetString(dr.GetOrdinal("Complemento"));
+                    e.bairro = dr.GetString(dr.GetOrdinal("Bairro"));
+                    e.cidade = dr.GetString(dr.GetOrdinal("Cidade"));
+                    e.estado = dr.GetString(dr.GetOrdinal("Estado"));
+                    e.cep = dr.GetString(dr.GetOrdinal("CEP"));
+
+                    PessoaViewModel p = new PessoaViewModel();
+                    p.pessoaId = dr.GetInt32(dr.GetOrdinal("PessoaFisicaID"));
+                    p.cargoId = dr.GetInt32(dr.GetOrdinal("CargoID"));
+                    p.nome = dr.GetString(dr.GetOrdinal("Nome"));
+                    p.cpf = dr.GetString(dr.GetOrdinal("CPF"));
+                    p.endereco = e;
+                    p.sexo = dr.GetString(dr.GetOrdinal("Sexo"));
+                    p.dataNasc = dr.GetDateTime(dr.GetOrdinal("DataNascimento"));
+                    p.estadoId = dr.GetByte(dr.GetOrdinal("EstadoCivilID"));
+
+                    list.Add(p);
+                }
+
                 dr.Close();
             }
 
@@ -102,6 +104,7 @@ namespace ProvaRecrutamento.DAO
             return list;
         }
 
+        [HttpPost]
         public static PessoaViewModel PessoasById(int id)
         {
             SQLConnection.conectar();
@@ -135,7 +138,7 @@ namespace ProvaRecrutamento.DAO
                     p.dataNasc = dr.GetDateTime(dr.GetOrdinal("DataNascimento"));
                     p.estadoId = dr.GetByte(dr.GetOrdinal("EstadoCivilID"));
                 }
-        
+
                 dr.Close();
             }
 
@@ -183,16 +186,18 @@ namespace ProvaRecrutamento.DAO
             }
         }
 
+        [HttpPost]
         public void ExcluirPessoa(int id)
         {
+
             SQLConnection.conectar();
 
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = SQLConnection.statusConexao();
-                command.CommandType = CommandType.Text;
                 command.CommandText = _deletePessoa;
-
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
 
                 SQLConnection.desconectar();
 
@@ -207,7 +212,7 @@ namespace ProvaRecrutamento.DAO
                 }
 
             }
-
         }
+
     }
 }

@@ -15,7 +15,7 @@
                 <div class="box">
                     <div id="cabecalho_grid" class="row">
                         <a id="btn_cadastrar" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus"></i>Cadastrar</a>
-                         @*@Html.Action("ProvaRecrutamento.Views.CadastrarPessoa1")*@
+                        @*@Html.Action("ProvaRecrutamento.Views.CadastrarPessoa1")*@
                     </div>
 
                     <div class="row">
@@ -181,39 +181,70 @@
 </div>
 
 @section Scripts{
-    <script>
-                            function chamar_form(dados) {
-                                $('txt_nome').val(dados.Nome);
+ <script>
+    function chamar_form(dados) {
+        $('txt_nome').val(dados.Nome);
+        var modal_cadastro = $('#modal_cadastro');
 
-                                var modal_cadastro = $('#modal_cadastro');
+        bootbox.dialog({
+            title: 'Cadastrar pessoas físicas',
+            message: modal_cadastro
+        }).on('shown.bs.modal', function () {
+            modal_cadastro.show(0, function () {
+                $('txt_nome').focus();
+            });
+        }).on('hidden.bs.modal', function () {
+            modal_cadastro.hide().appendTo('body');
+        });
+     }
 
-                                bootbox.dialog({
-                                    title: 'Cadastrar pessoas físicas',
-                                    message: modal_cadastro
-                                }).on('shown.bs.modal', function () {
-                                    modal_cadastro.show(0, function () {
-                                        $('txt_nome').focus();
-                                    });
-                                }).on('hidden.bs.modal', function () {
-                                    modal_cadastro.hide().appendTo('body');
-                                });
-                            }
+     $(document).on('click', '#btn_cadastrar', function () {
+         chamar_form({ id: 0, Nome: '' });
 
-                                $(document).on('click', '#btn_cadastrar', function () {
-                                    chamar_form({id:0, Nome: '', Ativo:true})
-                                }).on('click', '.btn-editar', function () {
-                                    url = '@Url.Action("EditarPessoa", "Pessoa")';
-                                    param = {'id': id };
-                                    $.post(url, param, function (response) {
-                                        if (response) {
-                                            chamar_form(response);
-                                        }
-                                    });
+     }).on('click', '.btn-editar', function () {
+         var btn = $(this);
+             id = btn.closest('tr').attr('data-id'),
+             url = '@Url.Action("EditarPessoa", "Pessoa")',
+             param = { 'id': id };
+         $.post(url, param, function (response) {
+             if (response) {
+                 chamar_form(response);
+             }
+         });
 
-                                }).on('click', '.btn-excluir', function () {
-                                    alert('1');
-                                });
+     }).on('click', '.btn-excluir', function () {
+             var btn = $(this),
+                 tr = btn.closest('tr'),
+                 id = tr.attr('data-id'),
+                 url = '@Url.Action("ExcluirPessoa", "Pessoa")',
+                 param = { 'id': id };
 
-    </script>
+         bootbox.confirm({
+             message: "Tem certeza que deseja apagar o item?",
+             buttons: {
+                 confirm: {
+                     label: 'Sim',
+                     className: 'btn-success'
+                 },
+                 cancel: {
+                     label: 'Não',
+                     className: 'btn-danger'
+                 }
+             },
+             callback: function (result) {
+                 if (result) {
+                     //alert('1');
+                     $.post(url, param, function (response) {
+                         if (response) {
+                             tr.remove();
+                         }
+                     });
+                 }
+             }
+             
+         });
+     });
+
+</script>
 }
 
